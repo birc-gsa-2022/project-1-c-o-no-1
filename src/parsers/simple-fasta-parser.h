@@ -1,6 +1,14 @@
 #ifndef SIMPLE_FASTA_PARSER_H
 #define SIMPLE_FASTA_PARSER_H
 #include <ctype.h>
+#include <malloc.h>
+
+int magic_number = 10;
+
+struct Fasta {
+    char* fasta_head;
+    char* fasta_sequence;
+};
 
 char *read_fasta_head(char **strptr) {
     char *string = *strptr;
@@ -51,6 +59,21 @@ char *read_fasta_sequence(char **strptr) {
     string[i] = '\0';
     *strptr = *strptr+i+shift;
     return string;
+}
+
+struct Fasta **parse_fasta(char *fasta_str) {
+    struct Fasta **fastas = malloc(magic_number*sizeof (char*));
+    int i = 0;
+    while (fasta_str[0] != '\0') {
+        char *header = read_fasta_head(&fasta_str);
+        char *sequence = read_fasta_sequence(&fasta_str);
+        struct Fasta *f = malloc(sizeof(struct Fasta));
+        f->fasta_head = header;
+        f->fasta_sequence = sequence;
+        fastas[i] = f;
+        i++;
+    }
+    return fastas;
 }
 
 #endif //SIMPLE_FASTA_PARSER_H
