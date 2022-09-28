@@ -14,8 +14,6 @@ int main(int argc, char const *argv[])
     const char *genome_fname = argv[1];
     const char *reads_fname = argv[2];
 
-    printf("Search in %s for reads from %s\n", genome_fname, reads_fname);
-
     char *fasta_str = read_file(genome_fname);
     char *reads_str = read_file(reads_fname);
 
