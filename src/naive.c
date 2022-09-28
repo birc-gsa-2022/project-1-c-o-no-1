@@ -4,22 +4,26 @@
 #include "parsers/simple-fastq-parser.h"
 #include "file_reader.h"
 
+int magic_number = 10;
+
 struct Fasta {
     char* fasta_head;
     char* fasta_sequence;
 };
 
-struct Fasta **get_fastas(char *fasta_str) {
-    struct Fasta **fastas = malloc(10*sizeof (char*));
+struct Fasta **parse_fasta(char *fasta_str) {
+    struct Fasta **fastas = malloc(magic_number*sizeof (char*));
+    int i = 0;
     while (fasta_str[0] != '\0') {
         char *header = read_fasta_head(&fasta_str);
         char *sequence = read_fasta_sequence(&fasta_str);
         struct Fasta *f = malloc(sizeof(struct Fasta));
         f->fasta_head = header;
         f->fasta_sequence = sequence;
-        *fastas = f;
-        fastas++;
+        fastas[i] = f;
+        i++;
     }
+    return fastas;
 }
 
 int main(int argc, char const *argv[])
@@ -37,13 +41,34 @@ int main(int argc, char const *argv[])
     char *fasta_str = read_file(genome_fname);
     char *reads_str = read_file(reads_fname);
 
+
+
+    struct Fasta **fastas = parse_fasta(fasta_str);
+    printf("%s\n", (*fastas)->fasta_head);
+    printf("%s\n", (*fastas)->fasta_sequence);
+    fastas++;
+    printf("%s\n", (*fastas)->fasta_head);
+    printf("%s\n", (*fastas)->fasta_sequence);
+    fastas++;
+    if (*(*fastas)->fasta_head == '\0') {
+        printf("We are done reading");
+    }
+
     /*
+     * Opgaven er nu: Vi har vores fastas parsed i fastas.
+     * Så der skal basically laves en:
      * for read in reads
      *  for fasta in fastas
      *      print(read, fasta, position)
+     *
+     *  print-kaldet skal se sådan her ud:
+     * printf("%s\t%s\t%d\t%luM\t%s\n", fastq_header, header, i+1, pattern_len, pattern);
+     *
+     * Fordi vi allerede har parsed, så kan vi i den indre-løkke (for fasta in fastas),
+     * kunne blot "resette" pointeren til starten - altså til den først fasta struct.
+     *
+     * Reads parser vi "as we go", mens fastas er preprocessed.
      */
-
-    struct Fasta **fastas = get_fastas(fasta_str);
 
     while (reads_str[0] != '\0') {
         char *fastq_header = read_fastq_head(&reads_str);
