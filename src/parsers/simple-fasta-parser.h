@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <malloc.h>
 
-int magic_number = 10;
+int magic_number = 80000000;
 
 struct Fasta {
     char* fasta_head;

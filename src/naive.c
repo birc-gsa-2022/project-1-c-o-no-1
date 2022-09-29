@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
         unsigned long pattern_len = strlen(pattern);
 
         struct Fasta **start_of_fastas = fastas;
-        while (*(*fastas)->fasta_head != '\0') {
+        while (*fastas != NULL) {
             char *header = (*fastas)->fasta_head;
             char *sequence = (*fastas)->fasta_sequence;
 
