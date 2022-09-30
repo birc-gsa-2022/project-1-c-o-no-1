@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
             do {
                 // Get match index
                 match_index = kmp_get_position_of_next_match(sequence, pattern, match_index, pattern_len, bax);
-                if (match_index < 0) continue;
+                if (match_index < 0) continue; // Avoid printing non-matches
                 printf("%s\t%s\t%d\t%dM\t%s\n", fastq_header, header, match_index, pattern_len, pattern);
             } while (match_index != -1);
 

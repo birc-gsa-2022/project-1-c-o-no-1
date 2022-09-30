@@ -44,10 +44,8 @@ int kmp_get_position_of_next_match(char *sequence, char *pattern, int seq_index,
         // Keep increasing i and j on matches
         while (j < pattern_len && sequence[i] == pattern[j]) { i++; j++; }
 
-        /*
-         * If we have matched all the way; return.
-        */
-        if (j == pattern_len) return i-pattern_len-bax[j-1]+1;
+        // If we have matched all the way; return.
+        if (j == pattern_len) return i-pattern_len+1;
 
         // On mismatches, we can use bax to skip
         if (sequence[i] != pattern[j]) {

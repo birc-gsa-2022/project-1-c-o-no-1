@@ -143,6 +143,26 @@ MU_TEST(test_multiple_matches) {
     mu_assert_int_eq(-1, match6);
 }
 
+MU_TEST(test_of_interesting_case) {
+    char *sequence = "CTAAGCTA";
+    char *pattern = "CTAAGCTA";
+    int seq_index = 0;
+    int pattern_len = (int) strlen(pattern);
+    int match = test_fun(sequence, pattern, seq_index, pattern_len);
+    mu_assert_int_eq(1, match);
+    seq_index = match;
+    int match2 = test_fun(sequence, pattern, seq_index, pattern_len);
+    mu_assert_int_eq(-1, match2);
+}
+
+
+
+
+
+
+
+
+
 MU_TEST(test_border_array_ississippi) {
     char *pattern = "ississippi";
     int expected_border_array[] = {0, 0, 0, 1, 2, 3, 4, 0, 0, 1};
@@ -233,6 +253,7 @@ void run_all_tests() {
     MU_RUN_TEST(test_match_empty_string);
     MU_RUN_TEST(test_pattern_longer_than_sequence);
     MU_RUN_TEST(test_multiple_matches);
+    MU_RUN_TEST(test_of_interesting_case);
 }
 
 void run_kmp_relevant_tests() {
