@@ -84,15 +84,26 @@ Once you have implemented the tools, fill out the report below.
 
 ### Insights you may have had while implementing and comparing the algorithms. 
 
-*Describe this here.*
+Implementation wise, C is a little difficult to get started with.
+
+If you are used to just calling something like str.replace("\n",""),
+that is unfortunately not going to fly in C.
+
+Got the hang of it though, and playing around with pointers isn't so scary anymore.
 
 ### Problems encountered if any. 
 
-*Describe this here.*
+We malloc a lot in our parser, as we do not know how many pairs of fasta heads and sequences our file will contain.
+
+The solution seems to be to malloc n, then n *2, then n *4 etc., however it seems quite tedious to implement (and a little slower depending on input).
 
 ### Experiments that verifies the correctness of your implementations.
 
-*Describe this here.*
+We have implemented tests in test/tests.c, testing the functionality of the naive and linear implementations. 
+
+The naive was implemented without any consideration. The linear KMP algorithm was implemented in a TDD manner.
+
+Both implementations were end-to-end stress tested with randomly generated 20 mb fasta files and lots of reads with success.
 
 ### Experiments validating the running time.
 
