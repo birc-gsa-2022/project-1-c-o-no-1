@@ -107,6 +107,10 @@ Both implementations were end-to-end stress tested with randomly generated 20 mb
 
 ### Experiments validating the running time.
 
+See https://github.com/birc-gsa-2022/project-1-c-o-no-1/blob/main/test-data/data-for-experiments/results.txt
+
+Some graphs and other results are probably in production.
+
 For this section, you should address the following:
 
 * An experiment that verifies that your implementation of `naive` uses no more time than O(nm) to find all occurrences of a given pattern in a text. Remember to explain your choice of test data. What are “best” and “worst” case inputs? 
