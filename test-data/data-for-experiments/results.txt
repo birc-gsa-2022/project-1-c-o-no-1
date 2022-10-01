@@ -1,0 +1,61 @@
+experiment 1:
+3000 fasta sequences
+30 reads
+fasta sequence length: n
+reads length: m
+
+naive   n-1000  m-2 : 2.06 secs
+linear  n-1000  m-2 : 0.98 secs
+n*m = 2000 
+
+naive   n-2000  m-4 : 5.28 secs
+linear  n-2000  m-4 : 1.65 secs
+n*m = 8000 
+
+naive	n-4000  m-8 : 15.73 secs
+linear  n-4000  m-8 : 2.80 secs
+n*m = 32000
+
+naive	n-8000  m-16: 47.61 secs 
+linear  n-8000  m-16: 5.29 secs 
+n*m = 128000
+
+naive	n-16000 m-32: 184.17 secs 
+linear  n-16000 m-32: 10.09 secs
+n*m = 512000
+
+
+experiment 2:
+1000 fasta sequences
+8 reads
+fasta sequence length: n
+reads length: m
+
+naive   n-1000 m-2: 0.2 secs
+linear  n-1000 m-2: 0.1 secs
+n/n = 500
+
+naive   n-2000 m-2: 0.45 secs 
+linear  n-2000 m-2: 0.18 secs
+n/m = 1000
+
+naive  n-9000 m-3: 5.77 secs
+linear n-9000 m-3: 0.7 secs
+n/m = 3000
+
+naive  n-15000 m-3: 14.4 secs
+linear n-15000 m-3: 1.25 secs
+n/m = 5000
+
+naive  n-40000 m-4: 139.15 secs
+linear n-40000 m-4: 3.06 secs
+n/m = 10000
+
+naive  n-120000 m-8: 1210 secs
+linear n-120000 m-8: 7.07 secs
+n/m = 15000
+
+
+
+
+
