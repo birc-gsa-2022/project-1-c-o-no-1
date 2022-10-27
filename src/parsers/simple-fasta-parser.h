@@ -44,7 +44,7 @@ char *read_fasta_sequence(char **strptr) {
     int shift = 0;
     while (1) {
         // Increase shift for each \n we encounter
-        while (string[i+shift] == '\n') {
+        while (string[i+shift] == '\n' || string[i+shift] == '\r') {
             shift++;
         }
         // If we encounter a \0 or >, then we are done

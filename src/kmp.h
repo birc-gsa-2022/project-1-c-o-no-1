@@ -23,7 +23,7 @@ int *compute_restricted_border_array(char *pattern, int pattern_len) {
     // Could be done faster (and uglier), but we assume pattern_len is not long.
     int *bax = compute_border_array(pattern, pattern_len);
     for (int i = 1; i < pattern_len; i++) {
-        if (pattern[i+1] == pattern[bax[i]]) {
+        if (bax[i] != 0 && pattern[i+1] == pattern[bax[i]]) {
             // Next char after border must be different
             bax[i] = bax[bax[i]-1];
         }
