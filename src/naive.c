@@ -3,6 +3,7 @@
 #include "parsers/simple-fasta-parser.h"
 #include "parsers/simple-fastq-parser.h"
 #include "file_reader.h"
+#include "naive.h"
 
 int main(int argc, char const *argv[])
 {
@@ -23,23 +24,22 @@ int main(int argc, char const *argv[])
     while (reads_str[0] != '\0') {
         char *fastq_header = read_fastq_head(&reads_str);
         char *pattern = read_fastq_pattern(&reads_str);
-        unsigned long pattern_len = strlen(pattern);
+        int pattern_len = (int) strlen(pattern);
 
         struct Fasta **start_of_fastas = fastas;
         while (*fastas != NULL) {
             char *header = (*fastas)->fasta_head;
             char *sequence = (*fastas)->fasta_sequence;
 
-            // Try to find instances of pattern in sequence
-            for (int i = 0; i < strlen(sequence); i++) {
-                int j = 0;
-                for (; j < pattern_len; j++) {
-                    if (sequence[i+j] != pattern[j]) break;
-                }
-                if (j == pattern_len) {
-                    printf("%s\t%s\t%d\t%luM\t%s\n", fastq_header, header, i+1, pattern_len, pattern);
-                }
-            }
+            // get_position_of_next_match should eventually output -1. At that point, we know no more matches occur.
+            int match_index = 0;
+            do {
+                // Get match index
+                match_index = naivly_get_position_of_next_match(sequence, pattern, match_index, pattern_len);
+                if (match_index < 0) continue;
+                printf("%s\t%s\t%d\t%dM\t%s\n", fastq_header, header, match_index, pattern_len, pattern);
+            } while (match_index != -1);
+
             fastas++;
         }
         fastas = start_of_fastas;

@@ -4,7 +4,7 @@
 
 char *read_file(const char *file_name) {
     FILE *fp;
-    fp = fopen(file_name, "r");
+    fp = fopen(file_name, "rb+");
 
     fseek(fp, 0, SEEK_END);
     long fsize = ftell(fp);

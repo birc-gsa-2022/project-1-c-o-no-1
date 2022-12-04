@@ -152,6 +152,19 @@ lin/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lin.dir/build.make CMakeFiles/lin.dir/build
 .PHONY : lin/fast
 
+#=============================================================================
+# Target rules for targets named testing
+
+# Build rule for target.
+testing: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testing
+.PHONY : testing
+
+# fast build rule for target.
+testing/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing.dir/build.make CMakeFiles/testing.dir/build
+.PHONY : testing/fast
+
 src/lin.o: src/lin.c.o
 .PHONY : src/lin.o
 
@@ -200,6 +213,30 @@ src/naive.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/naive.dir/build.make CMakeFiles/naive.dir/src/naive.c.s
 .PHONY : src/naive.c.s
 
+test/tests.o: test/tests.c.o
+.PHONY : test/tests.o
+
+# target to build an object file
+test/tests.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing.dir/build.make CMakeFiles/testing.dir/test/tests.c.o
+.PHONY : test/tests.c.o
+
+test/tests.i: test/tests.c.i
+.PHONY : test/tests.i
+
+# target to preprocess a source file
+test/tests.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing.dir/build.make CMakeFiles/testing.dir/test/tests.c.i
+.PHONY : test/tests.c.i
+
+test/tests.s: test/tests.c.s
+.PHONY : test/tests.s
+
+# target to generate assembly for a file
+test/tests.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing.dir/build.make CMakeFiles/testing.dir/test/tests.c.s
+.PHONY : test/tests.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -211,12 +248,16 @@ help:
 	@echo "... test"
 	@echo "... lin"
 	@echo "... naive"
+	@echo "... testing"
 	@echo "... src/lin.o"
 	@echo "... src/lin.i"
 	@echo "... src/lin.s"
 	@echo "... src/naive.o"
 	@echo "... src/naive.i"
 	@echo "... src/naive.s"
+	@echo "... test/tests.o"
+	@echo "... test/tests.i"
+	@echo "... test/tests.s"
 .PHONY : help
 
 
