@@ -109,21 +109,14 @@ Both implementations were end-to-end stress tested with randomly generated 20 mb
 
 See https://github.com/birc-gsa-2022/project-1-c-o-no-1/blob/main/test-data/data-for-experiments/results.txt
 
-Some graphs and other results are probably in production.
 
-For this section, you should address the following:
 
-* An experiment that verifies that your implementation of `naive` uses no more time than O(nm) to find all occurrences of a given pattern in a text. Remember to explain your choice of test data. What are “best” and “worst” case inputs? 
 
-* An experiment that verifies that your implementations of `lin` use no more time than O(n+m) to find all occurrences of a given pattern in a text. Remember to explain your choice of test data. What are “best” and “worst” case inputs?
+![](tider.png)
 
-You can insert pictures here like this:
+The test data was chosen to mimic the length of genomes, aka the length of data it would typically be used on. This is the same for both the naïve and the linear implementation.
 
-```
-![](path/to/fig)
-```
+We can see that the linear is, in fact, linear. However, the naive implementations seems to be quadratic in *n* rather than in *n* and *m*, and the reason for this is (unfortunately) unknown.
 
-I am not ready to share my own results yet, so I will just show you a fast scooter.
 
-![](figs/scooter.jpg)
 
